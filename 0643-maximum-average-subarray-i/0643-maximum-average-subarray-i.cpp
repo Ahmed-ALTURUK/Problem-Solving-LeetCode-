@@ -2,32 +2,26 @@ class Solution {
 public:
     double findMaxAverage(vector<int>& nums, int k)
     {
-        double sum = 0;
-        double max = 0;
-        int groupsNum = nums.size() - k + 1;
-        int pointer = k;
-
+        int sum = 0;
+        int maxSum = 0;
+       
         for(int i = 0; i < k ;i++)
         {
             sum += nums[i];
         }
         
-        max = sum;
+        maxSum = sum;
 
         if(nums.size()==k)
-            return max / k; 
+            return (double) maxSum / k; 
 
-        for(int i = 0; i < groupsNum;i++)
+        for(int i = k; i < nums.size();i++)
         {
-            sum -= nums[i];
-            sum += nums[pointer];
-            pointer++;
-
-            if(sum > max)
-                max = sum;
+            sum = sum - nums[i - k] + nums[i];
+            maxSum = max(maxSum, sum);
         }
 
-        return max / (double)k;
+        return (double) maxSum / k;
 
     }
 };
