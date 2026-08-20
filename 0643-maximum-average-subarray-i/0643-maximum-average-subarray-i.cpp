@@ -18,7 +18,7 @@ public:
         for(int i = k; i < nums.size();i++)
         {
             sum = sum - nums[i - k] + nums[i];
-            maxSum = max(maxSum, sum);
+            if(sum > maxSum)maxSum = sum;
         }
 
         return (double) maxSum / k;
